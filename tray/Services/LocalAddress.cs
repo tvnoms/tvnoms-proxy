@@ -1,7 +1,7 @@
 using System.Net;
 using System.Net.Sockets;
 
-namespace Xtreamium.Tray.Services;
+namespace Tvnoms.Tray.Services;
 
 /// <summary>Best guess at the address other devices on the LAN would use to reach this machine.
 /// The proxy binds 0.0.0.0, which is meaningless to show a user, so the tooltip shows this instead.</summary>

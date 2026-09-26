@@ -1,9 +1,9 @@
 using Dapper;
 using Microsoft.VisualBasic.FileIO;
-using Xtreamium.Proxy.Configuration;
-using Xtreamium.Proxy.Data.Repositories;
+using Tvnoms.Proxy.Configuration;
+using Tvnoms.Proxy.Data.Repositories;
 
-namespace Xtreamium.Proxy.Data;
+namespace Tvnoms.Proxy.Data;
 
 /// <summary>
 /// Service registration extensions for the improved database layer

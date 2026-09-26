@@ -1,7 +1,7 @@
-namespace Xtreamium.Tray.Configuration;
+namespace Tvnoms.Tray.Configuration;
 
 public static class TrayPaths {
-  public const string DirectoryName = "xtreamium-tray";
+  public const string DirectoryName = "tvnoms-tray";
 
   public static string AppDataDirectory => Path.Combine(
     Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),

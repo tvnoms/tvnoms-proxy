@@ -1,7 +1,7 @@
 using System.Reflection;
 using FluentMigrator.Runner;
 
-namespace Xtreamium.Proxy.Data;
+namespace Tvnoms.Proxy.Data;
 
 public static class MigrationManager {
   public static IServiceCollection AddMigrations(this IServiceCollection services) {

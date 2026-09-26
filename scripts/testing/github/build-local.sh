@@ -180,7 +180,7 @@ fi
 
 # Get version from csproj if not provided
 if [ -z "$VERSION" ]; then
-    VERSION=$(grep -oP '<Version>\K[^<]+' "$PROJECT_ROOT/proxy/xtreamium-proxy.csproj" | head -1)
+    VERSION=$(grep -oP '<Version>\K[^<]+' "$PROJECT_ROOT/proxy/tvnoms-proxy.csproj" | head -1)
     if [ -z "$VERSION" ]; then
         print_warning "Could not extract version from .csproj file, using v0.0.0-local"
         VERSION="v0.0.0-local"

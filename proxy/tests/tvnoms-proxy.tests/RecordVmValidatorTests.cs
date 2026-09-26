@@ -1,8 +1,8 @@
 ﻿using Xunit;
-using Xtreamium.Proxy.Models;
-using Xtreamium.Proxy.Services;
+using Tvnoms.Proxy.Models;
+using Tvnoms.Proxy.Services;
 
-namespace Xtreamium.Proxy.Tests;
+namespace Tvnoms.Proxy.Tests;
 
 public class RecordVmValidatorTests {
   private const string ValidUrl = "http://example.com/stream.ts";

@@ -5,7 +5,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <IsPackable>false</IsPackable>
-    <RootNamespace>Xtreamium.Proxy.Tests</RootNamespace>
+    <RootNamespace>Tvnoms.Tray.Tests</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -18,8 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../../xtreamium-proxy.csproj" />
+    <ProjectReference Include="../../tvnoms-tray.csproj" />
   </ItemGroup>
 
 </Project>
-

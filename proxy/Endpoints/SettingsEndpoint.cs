@@ -1,9 +1,9 @@
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
-using Xtreamium.Proxy.Data.Repositories;
-using Xtreamium.Proxy.Models;
+using Tvnoms.Proxy.Data.Repositories;
+using Tvnoms.Proxy.Models;
 
-namespace Xtreamium.Proxy.Endpoints;
+namespace Tvnoms.Proxy.Endpoints;
 
 public static class SettingsEndpoint {
   public static void RegisterSettingsEndpoints(this IEndpointRouteBuilder app) {

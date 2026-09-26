@@ -1,9 +1,9 @@
 using Dapper;
 using Microsoft.Extensions.Options;
-using Xtreamium.Proxy.Configuration;
-using Xtreamium.Proxy.Data.Models;
+using Tvnoms.Proxy.Configuration;
+using Tvnoms.Proxy.Data.Models;
 
-namespace Xtreamium.Proxy.Data.Repositories;
+namespace Tvnoms.Proxy.Data.Repositories;
 
 public interface ISettingsRepository : IRepository<Setting> {
   Task<Dictionary<string, string>> GetSettingsAsync();

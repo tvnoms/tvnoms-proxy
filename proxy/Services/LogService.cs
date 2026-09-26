@@ -1,7 +1,7 @@
 ﻿using System.Text.RegularExpressions;
-using Xtreamium.Proxy.Configuration;
+using Tvnoms.Proxy.Configuration;
 
-namespace Xtreamium.Proxy.Services;
+namespace Tvnoms.Proxy.Services;
 
 public interface ILogService {
   Task<List<LogEntry>> GetLogsAsync(int? limit = null, string? level = null, DateTime? startDate = null, DateTime? endDate = null);

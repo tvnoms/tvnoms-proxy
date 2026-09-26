@@ -1,10 +1,10 @@
 ﻿using System.Text.Json;
 using Quartz;
-using Xtreamium.Proxy.Data.Models;
-using Xtreamium.Proxy.Data.Repositories;
-using Xtreamium.Proxy.Models;
+using Tvnoms.Proxy.Data.Models;
+using Tvnoms.Proxy.Data.Repositories;
+using Tvnoms.Proxy.Models;
 
-namespace Xtreamium.Proxy.Services.Jobs;
+namespace Tvnoms.Proxy.Services.Jobs;
 
 public class RecordJob : IJob {
   private readonly IRecordingService _recorder;

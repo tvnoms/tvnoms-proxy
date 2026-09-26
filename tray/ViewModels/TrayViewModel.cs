@@ -5,10 +5,10 @@ using Avalonia.Platform;
 using Avalonia.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Xtreamium.Tray.Services;
-using Xtreamium.Tray.Views;
+using Tvnoms.Tray.Services;
+using Tvnoms.Tray.Views;
 
-namespace Xtreamium.Tray.ViewModels;
+namespace Tvnoms.Tray.ViewModels;
 
 public partial class TrayViewModel : ObservableObject {
   private static readonly TimeSpan DisconnectedPromotionDelay = TimeSpan.FromSeconds(5);
@@ -33,7 +33,7 @@ public partial class TrayViewModel : ObservableObject {
   private bool _stoppedFromTray;
 
   [ObservableProperty] private WindowIcon _iconSource;
-  [ObservableProperty] private string _tooltipText = "Xtreamium — starting…";
+  [ObservableProperty] private string _tooltipText = "Tvnoms — starting…";
   [ObservableProperty] private bool _isWebUiEnabled;
 
   // null until the first connect attempt settles, so neither Start nor Stop is offered while the
@@ -68,7 +68,7 @@ public partial class TrayViewModel : ObservableObject {
   }
 
   private static WindowIcon LoadIcon(string fileName) {
-    using var stream = AssetLoader.Open(new Uri($"avares://xtreamium-tray/Assets/{fileName}"));
+    using var stream = AssetLoader.Open(new Uri($"avares://tvnoms-tray/Assets/{fileName}"));
     return new WindowIcon(stream);
   }
 
@@ -130,7 +130,7 @@ public partial class TrayViewModel : ObservableObject {
     if (!_isConfirmedConnected) {
       Dispatcher.UIThread.Post(() => {
         IconSource = _disconnectedIcon;
-        TooltipText = _stoppedFromTray ? "Xtreamium Proxy - stopped" : "Xtreamium — can't reach proxy";
+        TooltipText = _stoppedFromTray ? "Tvnoms Proxy - stopped" : "Tvnoms — can't reach proxy";
         IsProxyRunning = false;
       });
     }

@@ -1,6 +1,6 @@
 using Dapper.Contrib.Extensions;
 
-namespace Xtreamium.Proxy.Data.Models;
+namespace Tvnoms.Proxy.Data.Models;
 
 [Table("settings")]
 public record Setting {

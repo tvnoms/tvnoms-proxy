@@ -52,8 +52,8 @@ if ! command -v nfpm &> /dev/null; then
 fi
 
 # Check if the application has been published
-if [ ! -f "$PROJECT_ROOT/publish/linux/xtreamium-proxy" ]; then
-    print_error "Application not found at $PROJECT_ROOT/publish/linux/xtreamium-proxy"
+if [ ! -f "$PROJECT_ROOT/publish/linux/tvnoms-proxy" ]; then
+    print_error "Application not found at $PROJECT_ROOT/publish/linux/tvnoms-proxy"
     print_info "Please run the build script first: ./scripts/build.sh"
     exit 1
 fi
@@ -64,7 +64,7 @@ if [ -n "$VERSION" ]; then
     VERSION="${VERSION#v}"
     print_info "Using version from environment: $VERSION"
 else
-    VERSION=$(grep -oP '<Version>\K[^<]+' "$PROJECT_ROOT/proxy/xtreamium-proxy.csproj" | head -1)
+    VERSION=$(grep -oP '<Version>\K[^<]+' "$PROJECT_ROOT/proxy/tvnoms-proxy.csproj" | head -1)
     if [ -z "$VERSION" ]; then
         print_warning "Could not extract version from .csproj file, using 0.0.0"
         VERSION="0.0.0"
@@ -91,8 +91,8 @@ print_info "Building DEB package..."
 if nfpm package \
     --config nfpm.yaml \
     --packager deb \
-    --target "$OUTPUT_DIR/xtreamium-proxy_${VERSION}_amd64.deb"; then
-    print_info "DEB package created: $OUTPUT_DIR/xtreamium-proxy_${VERSION}_amd64.deb"
+    --target "$OUTPUT_DIR/tvnoms-proxy_${VERSION}_amd64.deb"; then
+    print_info "DEB package created: $OUTPUT_DIR/tvnoms-proxy_${VERSION}_amd64.deb"
 else
     print_error "Failed to build DEB package"
     exit 1
@@ -103,8 +103,8 @@ print_info "Building RPM package..."
 if nfpm package \
     --config nfpm.yaml \
     --packager rpm \
-    --target "$OUTPUT_DIR/xtreamium-proxy-${VERSION}-1.x86_64.rpm"; then
-    print_info "RPM package created: $OUTPUT_DIR/xtreamium-proxy-${VERSION}-1.x86_64.rpm"
+    --target "$OUTPUT_DIR/tvnoms-proxy-${VERSION}-1.x86_64.rpm"; then
+    print_info "RPM package created: $OUTPUT_DIR/tvnoms-proxy-${VERSION}-1.x86_64.rpm"
 else
     print_error "Failed to build RPM package"
     exit 1
@@ -115,8 +115,8 @@ print_info "Building Arch Linux package..."
 if nfpm package \
     --config nfpm.yaml \
     --packager archlinux \
-    --target "$OUTPUT_DIR/xtreamium-proxy-${VERSION}-1-x86_64.pkg.tar.zst"; then
-    print_info "Arch Linux package created: $OUTPUT_DIR/xtreamium-proxy-${VERSION}-1-x86_64.pkg.tar.zst"
+    --target "$OUTPUT_DIR/tvnoms-proxy-${VERSION}-1-x86_64.pkg.tar.zst"; then
+    print_info "Arch Linux package created: $OUTPUT_DIR/tvnoms-proxy-${VERSION}-1-x86_64.pkg.tar.zst"
 else
     print_error "Failed to build Arch Linux package"
     exit 1
@@ -132,15 +132,15 @@ echo ""
 echo "==================== Installation Instructions ===================="
 echo ""
 echo "Debian/Ubuntu:"
-echo "  sudo dpkg -i $OUTPUT_DIR/xtreamium-proxy_${VERSION}_amd64.deb"
+echo "  sudo dpkg -i $OUTPUT_DIR/tvnoms-proxy_${VERSION}_amd64.deb"
 echo "  sudo apt-get install -f  # Install dependencies if needed"
 echo ""
 echo "RHEL/Fedora/CentOS:"
-echo "  sudo rpm -i $OUTPUT_DIR/xtreamium-proxy-${VERSION}-1.x86_64.rpm"
+echo "  sudo rpm -i $OUTPUT_DIR/tvnoms-proxy-${VERSION}-1.x86_64.rpm"
 echo "  # or"
-echo "  sudo dnf install $OUTPUT_DIR/xtreamium-proxy-${VERSION}-1.x86_64.rpm"
+echo "  sudo dnf install $OUTPUT_DIR/tvnoms-proxy-${VERSION}-1.x86_64.rpm"
 echo ""
 echo "Arch Linux:"
-echo "  sudo pacman -U $OUTPUT_DIR/xtreamium-proxy-${VERSION}-1-x86_64.pkg.tar.zst"
+echo "  sudo pacman -U $OUTPUT_DIR/tvnoms-proxy-${VERSION}-1-x86_64.pkg.tar.zst"
 echo ""
 echo "===================================================================="

@@ -1,10 +1,10 @@
-namespace Xtreamium.Tray.Services;
+namespace Tvnoms.Tray.Services;
 
 /// <summary>Turns the current active-recording set into the tray icon's tooltip text. Pulled out
 /// of TrayViewModel so the formatting rules are testable without any Avalonia dependency.</summary>
 public static class TooltipFormatter {
   public static string Format(string listenAddress, IReadOnlyList<ActiveRecording> activeRecordings) {
-    var header = $"Xtreamium Proxy - listening on {listenAddress}";
+    var header = $"Tvnoms Proxy - listening on {listenAddress}";
     if (activeRecordings.Count == 0) {
       return header;
     }

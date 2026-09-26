@@ -1,6 +1,6 @@
-namespace Xtreamium.Tray.Models;
+namespace Tvnoms.Tray.Models;
 
-// Local mirror of xtreamium-proxy's Models/SettingsVm.cs. See RecordingModels.cs for why this
+// Local mirror of tvnoms-proxy's Models/SettingsVm.cs. See RecordingModels.cs for why this
 // stays a plain DTO instead of a project/package reference.
 
 public record SettingsDto {

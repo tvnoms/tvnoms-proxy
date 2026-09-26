@@ -2,20 +2,20 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.Versioning;
 
-namespace Xtreamium.Tray.Services;
+namespace Tvnoms.Tray.Services;
 
-/// <summary>Starts and stops xtreamium-proxy from the tray menu, using whatever mechanism the
+/// <summary>Starts and stops tvnoms-proxy from the tray menu, using whatever mechanism the
 /// proxy was installed under on this OS. Every call runs off the UI thread and never throws — a
 /// failed or declined start/stop just leaves the proxy as it was, and the tray's connection state
 /// (not the return value) is what the menu reflects.</summary>
 public static class ProxyServiceControl {
-  private const string SystemdUnit = "xtreamium-proxy.service";
+  private const string SystemdUnit = "tvnoms-proxy.service";
 
   // Must match the name UpdateManager registers with sc.exe / schtasks.exe / the registry Run key.
-  private const string WindowsServiceName = "XtreamiumProxy";
+  private const string WindowsServiceName = "TvnomsProxy";
 
   // The name Process.GetProcessesByName expects - no ".exe", since Process.ProcessName strips it.
-  private const string ProxyProcessName = "xtreamium-proxy";
+  private const string ProxyProcessName = "tvnoms-proxy";
 
   public static bool IsSupported => OperatingSystem.IsLinux() || OperatingSystem.IsWindows();
 
@@ -34,7 +34,7 @@ public static class ProxyServiceControl {
     } catch (Win32Exception ex) when (ex.NativeErrorCode == 1223) {
       // ERROR_CANCELLED - the user declined the UAC prompt.
     } catch (Exception ex) {
-      Console.WriteLine($"[xtreamium-tray] Failed to {(start ? "start" : "stop")} proxy: {ex.Message}");
+      Console.WriteLine($"[tvnoms-tray] Failed to {(start ? "start" : "stop")} proxy: {ex.Message}");
     }
     return false;
   }
@@ -101,7 +101,7 @@ public static class ProxyServiceControl {
     var stderr = process.StandardError.ReadToEnd();
     process.WaitForExit();
     if (process.ExitCode != 0) {
-      Console.WriteLine($"[xtreamium-tray] '{fileName} {arguments}' exited {process.ExitCode}: {stderr.Trim()}");
+      Console.WriteLine($"[tvnoms-tray] '{fileName} {arguments}' exited {process.ExitCode}: {stderr.Trim()}");
     }
     return process.ExitCode;
   }

@@ -1,7 +1,7 @@
 ﻿using System.Data;
 using Dapper;
 
-namespace Xtreamium.Proxy.Data;
+namespace Tvnoms.Proxy.Data;
 
 /// <summary>
 /// Custom Dapper type handler for DateTimeOffset to handle SQLite string conversions

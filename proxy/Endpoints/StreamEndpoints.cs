@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Xtreamium.Proxy.Endpoints;
+namespace Tvnoms.Proxy.Endpoints;
 
 public static class StreamEndpoints {
   private const int MaxRedirects = 10;

@@ -1,9 +1,9 @@
 ﻿using FFMpegCore;
 using FFMpegCore.Enums;
 using Quartz;
-using Xtreamium.Proxy.Data.Repositories;
+using Tvnoms.Proxy.Data.Repositories;
 
-namespace Xtreamium.Proxy.Services;
+namespace Tvnoms.Proxy.Services;
 
 public class RecordingService : IRecordingService {
   /// <summary>
@@ -49,7 +49,7 @@ public class RecordingService : IRecordingService {
     var outputPath = settings.GetValueOrDefault("RecordingsPath",
       Path.Combine(
         Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
-        "xtreamium"));
+        "tvnoms"));
 
     var duration = endTime.Subtract(startTime);
     _logger.LogTrace(

@@ -1,7 +1,7 @@
 using FluentValidation;
-using Xtreamium.Proxy.Services;
+using Tvnoms.Proxy.Services;
 
-namespace Xtreamium.Proxy.Models;
+namespace Tvnoms.Proxy.Models;
 
 internal sealed class RecordVm {
   public required string Url { get; set; }

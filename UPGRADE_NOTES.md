@@ -1,7 +1,7 @@
 # .NET 10 and Quartz.Net 4.1.0 Upgrade - Summary
 
 ## Overview
-Successfully upgraded the xtreamium-proxy project from .NET 9 to .NET 10 and Quartz.Net 3.x to 4.1.0.
+Successfully upgraded the tvnoms-proxy project from .NET 9 to .NET 10 and Quartz.Net 3.x to 4.1.0.
 
 ## Changes Made
 
@@ -45,8 +45,8 @@ await scheduler.ScheduleJob(job, trigger);
 
 **Before:**
 ```csharp
-q.SchedulerId = "Xtreamium-Proxy-Scheduler";
-q.SchedulerName = "Xtreamium Proxy Scheduler";
+q.SchedulerId = "Tvnoms-Proxy-Scheduler";
+q.SchedulerName = "Tvnoms Proxy Scheduler";
 options.UseMicrosoftSQLite(jobsDb);
 ```
 
@@ -80,8 +80,8 @@ bash /tmp/fix_quartz_db.sh
 
 Or manually delete the database files:
 ```bash
-rm ~/.xtreamium-proxy/config_dev.db
-rm ~/.xtreamium-proxy/config.db
+rm ~/.tvnoms-proxy/config_dev.db
+rm ~/.tvnoms-proxy/config.db
 ```
 
 The database files will be automatically recreated with the correct schema on the next startup.

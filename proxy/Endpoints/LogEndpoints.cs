@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Xtreamium.Proxy.Services;
+using Tvnoms.Proxy.Services;
 
-namespace Xtreamium.Proxy.Endpoints;
+namespace Tvnoms.Proxy.Endpoints;
 
 public static class LogEndpoints {
   public static void RegisterLogEndpoints(this IEndpointRouteBuilder app) {

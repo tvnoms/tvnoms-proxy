@@ -1,6 +1,6 @@
 using System.Security;
 
-namespace Xtreamium.Proxy.Services;
+namespace Tvnoms.Proxy.Services;
 
 /// <summary>
 /// Security and validation helpers

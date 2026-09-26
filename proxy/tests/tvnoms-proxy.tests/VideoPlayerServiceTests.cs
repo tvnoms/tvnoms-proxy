@@ -2,11 +2,11 @@
 using System.Reflection;
 using Microsoft.Extensions.Logging.Abstractions;
 using Xunit;
-using Xtreamium.Proxy.Data.Models;
-using Xtreamium.Proxy.Data.Repositories;
-using Xtreamium.Proxy.Services;
+using Tvnoms.Proxy.Data.Models;
+using Tvnoms.Proxy.Data.Repositories;
+using Tvnoms.Proxy.Services;
 
-namespace Xtreamium.Proxy.Tests;
+namespace Tvnoms.Proxy.Tests;
 
 public class VideoPlayerServiceTests {
   [Fact]

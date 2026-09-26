@@ -1,9 +1,9 @@
 ﻿using System.Diagnostics;
 using System.Security;
 using System.Collections.Concurrent;
-using Xtreamium.Proxy.Data.Repositories;
+using Tvnoms.Proxy.Data.Repositories;
 
-namespace Xtreamium.Proxy.Services;
+namespace Tvnoms.Proxy.Services;
 
 public class VideoPlayerService(
   ILogger<VideoPlayerService> logger,

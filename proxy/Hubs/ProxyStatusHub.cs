@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.SignalR;
 
-namespace Xtreamium.Proxy.Hubs;
+namespace Tvnoms.Proxy.Hubs;
 
 public class ProxyStatusHub : Hub {
   public async Task SendMessage(string user, string message) {

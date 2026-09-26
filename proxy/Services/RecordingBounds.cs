@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.Options;
-using Xtreamium.Proxy.Configuration;
-using Xtreamium.Proxy.Data.Repositories;
+using Tvnoms.Proxy.Configuration;
+using Tvnoms.Proxy.Data.Repositories;
 
-namespace Xtreamium.Proxy.Services;
+namespace Tvnoms.Proxy.Services;
 
 /// <summary>
 /// The allowed length of a recording, as configured by the user.

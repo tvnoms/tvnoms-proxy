@@ -3,13 +3,13 @@ using System.Web;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using Quartz;
-using Xtreamium.Proxy.Data.Models;
-using Xtreamium.Proxy.Data.Repositories;
-using Xtreamium.Proxy.Models;
-using Xtreamium.Proxy.Services;
-using Xtreamium.Proxy.Services.Jobs;
+using Tvnoms.Proxy.Data.Models;
+using Tvnoms.Proxy.Data.Repositories;
+using Tvnoms.Proxy.Models;
+using Tvnoms.Proxy.Services;
+using Tvnoms.Proxy.Services.Jobs;
 
-namespace Xtreamium.Proxy.Endpoints;
+namespace Tvnoms.Proxy.Endpoints;
 
 public static class RecordingsEndpoint {
   public static void RegisterRecordEndpoints(this IEndpointRouteBuilder app) {

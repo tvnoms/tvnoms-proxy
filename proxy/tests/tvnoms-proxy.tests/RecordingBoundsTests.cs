@@ -1,11 +1,11 @@
 ﻿using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.Extensions.Options;
 using Xunit;
-using Xtreamium.Proxy.Configuration;
-using Xtreamium.Proxy.Data.Repositories;
-using Xtreamium.Proxy.Services;
+using Tvnoms.Proxy.Configuration;
+using Tvnoms.Proxy.Data.Repositories;
+using Tvnoms.Proxy.Services;
 
-namespace Xtreamium.Proxy.Tests;
+namespace Tvnoms.Proxy.Tests;
 
 public class RecordingBoundsTests {
   /// <summary>

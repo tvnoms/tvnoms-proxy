@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.Extensions.DependencyInjection;
-using Xtreamium.Tray.Models;
+using Tvnoms.Tray.Models;
 
-namespace Xtreamium.Tray.Services;
+namespace Tvnoms.Tray.Services;
 
 public enum HubConnectionPhase {
   Connecting,
@@ -10,7 +10,7 @@ public enum HubConnectionPhase {
   Disconnected,
 }
 
-/// <summary>Wraps the SignalR connection to xtreamium-proxy's ProxyStatusHub. Re-resolves the
+/// <summary>Wraps the SignalR connection to tvnoms-proxy's ProxyStatusHub. Re-resolves the
 /// proxy's base URL on every connection attempt (see <see cref="ProxyDiscovery"/>), so a proxy
 /// restart on a different port is picked up without restarting the tray.
 ///

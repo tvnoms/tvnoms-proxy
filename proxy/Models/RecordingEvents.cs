@@ -1,4 +1,4 @@
-﻿namespace Xtreamium.Proxy.Models;
+﻿namespace Tvnoms.Proxy.Models;
 
 /// <summary>
 /// Pushed whenever a recording row changes state. The web treats this as a signal to refetch

@@ -1,8 +1,8 @@
 using System.Web;
 using Microsoft.AspNetCore.Mvc;
-using Xtreamium.Proxy.Services;
+using Tvnoms.Proxy.Services;
 
-namespace Xtreamium.Proxy.Endpoints;
+namespace Tvnoms.Proxy.Endpoints;
 
 public static class PlayerEndpoints {
   public static void RegisterPlayerEndpoints(this IEndpointRouteBuilder app) {

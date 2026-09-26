@@ -31,7 +31,7 @@ jobs:
     - name: Upload Windows Installer
       uses: actions/upload-artifact@v4
       with:
-        name: xtreamium-proxy-windows-installer
+        name: tvnoms-proxy-windows-installer
         path: publish/packages/*.exe
 
   build-linux:
@@ -46,10 +46,10 @@ jobs:
         dotnet-version: '10.0.x'
 
     - name: Publish Linux
-      run: dotnet publish proxy/xtreamium-proxy.csproj -c Release -r linux-x64 --self-contained true -p:PublishSingleFile=true -o ./publish/linux
+      run: dotnet publish proxy/tvnoms-proxy.csproj -c Release -r linux-x64 --self-contained true -p:PublishSingleFile=true -o ./publish/linux
 
     - name: Publish Tray
-      run: dotnet publish tray/xtreamium-tray.csproj -c Release -r linux-x64 --self-contained true -p:PublishSingleFile=true -o ./publish/linux
+      run: dotnet publish tray/tvnoms-tray.csproj -c Release -r linux-x64 --self-contained true -p:PublishSingleFile=true -o ./publish/linux
 
     - name: Remove Development Configuration
       run: rm -f ./publish/linux/appsettings.Development.json
@@ -65,18 +65,18 @@ jobs:
 
     - name: Stage Linux release artifacts
       run: |
-        # User systemd unit — shipped at /usr/lib/systemd/user/xtreamium-proxy.service
+        # User systemd unit — shipped at /usr/lib/systemd/user/tvnoms-proxy.service
         # by the distro packages, also bundled in the tarball for AUR consumption.
-        cat > ./publish/linux/xtreamium-proxy.service << 'EOF'
+        cat > ./publish/linux/tvnoms-proxy.service << 'EOF'
         [Unit]
-        Description=Xtreamium Proxy Service
-        Documentation=https://github.com/xtreamium/xtreamium-proxy
+        Description=Tvnoms Proxy Service
+        Documentation=https://github.com/tvnoms/tvnoms-proxy
         After=network-online.target
-        Wants=network-online.target xtreamium-tray.service
+        Wants=network-online.target tvnoms-tray.service
 
         [Service]
         Type=notify
-        ExecStart=/usr/bin/xtreamium-proxy
+        ExecStart=/usr/bin/tvnoms-proxy
         Restart=on-failure
         RestartSec=5
         Environment=ASPNETCORE_ENVIRONMENT=Production
@@ -86,16 +86,16 @@ jobs:
         WantedBy=default.target
         EOF
 
-        # Tray icon user unit — shipped at /usr/lib/systemd/user/xtreamium-tray.service. The proxy
+        # Tray icon user unit — shipped at /usr/lib/systemd/user/tvnoms-tray.service. The proxy
         # Wants= it (so starting the proxy starts the tray), but the tray is deliberately NOT PartOf=
         # or Requisite= on the proxy: it stays up while the proxy is stopped so its menu can start
         # the proxy again.
-        cat > ./publish/linux/xtreamium-tray.service << 'EOF'
+        cat > ./publish/linux/tvnoms-tray.service << 'EOF'
         [Unit]
-        Description=Xtreamium Tray
-        Documentation=https://github.com/xtreamium/xtreamium-proxy
+        Description=Tvnoms Tray
+        Documentation=https://github.com/tvnoms/tvnoms-proxy
         PartOf=graphical-session.target
-        After=xtreamium-proxy.service graphical-session.target
+        After=tvnoms-proxy.service graphical-session.target
         # The proxy can start before the desktop session has exported its display to the user
         # manager. Skip cleanly (rather than crash-loop) when there is no display; the
         # graphical-session.target.wants link shipped alongside this unit starts us once the
@@ -104,7 +104,7 @@ jobs:
         ConditionEnvironment=|DISPLAY
 
         [Service]
-        ExecStart=/usr/bin/xtreamium-tray
+        ExecStart=/usr/bin/tvnoms-tray
         Restart=on-failure
         RestartSec=5
         Environment=DOTNET_PRINT_TELEMETRY_MESSAGE=false
@@ -112,28 +112,28 @@ jobs:
 
         # Minimal README bundled into the tarball for AUR's makepkg source.
         cat > ./publish/linux/README.md << 'EOF'
-        # Xtreamium Proxy
+        # Tvnoms Proxy
 
         Per-user systemd service. Install via your distro package
-        (`pacman -S xtreamium-proxy`, `apt install ./xtreamium-proxy*.deb`,
-        `rpm -i xtreamium-proxy*.rpm`), then:
+        (`pacman -S tvnoms-proxy`, `apt install ./tvnoms-proxy*.deb`,
+        `rpm -i tvnoms-proxy*.rpm`), then:
 
         ```
-        systemctl --user enable --now xtreamium-proxy
+        systemctl --user enable --now tvnoms-proxy
         ```
 
-        Config is created at `~/.config/xtreamium-proxy/appsettings.json` on first
+        Config is created at `~/.config/tvnoms-proxy/appsettings.json` on first
         run. A reference template is installed to
-        `/usr/share/xtreamium-proxy/appsettings.json.example`.
+        `/usr/share/tvnoms-proxy/appsettings.json.example`.
 
-        A notification-area icon (`xtreamium-tray`) showing recording status is
+        A notification-area icon (`tvnoms-tray`) showing recording status is
         installed alongside the service. It is a systemd user unit tied to the
-        proxy: it starts and stops with `xtreamium-proxy` (whenever a graphical
+        proxy: it starts and stops with `tvnoms-proxy` (whenever a graphical
         session is available), so there is nothing extra to enable.
         EOF
 
-        chmod +x ./publish/linux/xtreamium-proxy
-        chmod +x ./publish/linux/xtreamium-tray
+        chmod +x ./publish/linux/tvnoms-proxy
+        chmod +x ./publish/linux/tvnoms-tray
 
     - name: Build Distribution Packages
       run: |
@@ -146,30 +146,30 @@ jobs:
     - name: Create Linux TAR package
       run: |
         cd ./publish/linux
-        tar -czf ../../xtreamium-proxy-linux.tar.gz *
+        tar -czf ../../tvnoms-proxy-linux.tar.gz *
 
     - name: Upload Linux Artifact
       uses: actions/upload-artifact@v4
       with:
-        name: xtreamium-proxy-linux
-        path: ./xtreamium-proxy-linux.tar.gz
+        name: tvnoms-proxy-linux
+        path: ./tvnoms-proxy-linux.tar.gz
 
     - name: Upload DEB Package
       uses: actions/upload-artifact@v4
       with:
-        name: xtreamium-proxy-deb
+        name: tvnoms-proxy-deb
         path: ./publish/packages/*.deb
 
     - name: Upload RPM Package
       uses: actions/upload-artifact@v4
       with:
-        name: xtreamium-proxy-rpm
+        name: tvnoms-proxy-rpm
         path: ./publish/packages/*.rpm
 
     - name: Upload Arch Package
       uses: actions/upload-artifact@v4
       with:
-        name: xtreamium-proxy-arch
+        name: tvnoms-proxy-arch
         path: ./publish/packages/*.pkg.tar.zst
 
     - name: Push to AUR
@@ -209,31 +209,31 @@ jobs:
     - name: Download Windows Installer
       uses: actions/download-artifact@v4
       with:
-        name: xtreamium-proxy-windows-installer
+        name: tvnoms-proxy-windows-installer
         path: ./artifacts/windows
 
     - name: Download Linux Artifact
       uses: actions/download-artifact@v4
       with:
-        name: xtreamium-proxy-linux
+        name: tvnoms-proxy-linux
         path: ./artifacts/linux
 
     - name: Download DEB Package
       uses: actions/download-artifact@v4
       with:
-        name: xtreamium-proxy-deb
+        name: tvnoms-proxy-deb
         path: ./artifacts/deb
 
     - name: Download RPM Package
       uses: actions/download-artifact@v4
       with:
-        name: xtreamium-proxy-rpm
+        name: tvnoms-proxy-rpm
         path: ./artifacts/rpm
 
     - name: Download Arch Package
       uses: actions/download-artifact@v4
       with:
-        name: xtreamium-proxy-arch
+        name: tvnoms-proxy-arch
         path: ./artifacts/arch
 
     - name: Upload Release Assets

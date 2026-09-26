@@ -1,7 +1,7 @@
 using Avalonia.Controls;
-using Xtreamium.Tray.ViewModels;
+using Tvnoms.Tray.ViewModels;
 
-namespace Xtreamium.Tray.Views;
+namespace Tvnoms.Tray.Views;
 
 public partial class SettingsWindow : Window {
   public SettingsWindow() {

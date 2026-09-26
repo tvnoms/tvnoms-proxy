@@ -3,13 +3,13 @@ using Microsoft.Extensions.Http.Resilience;
 using Polly;
 using Quartz;
 using Serilog;
-using Xtreamium.Proxy.Configuration;
-using Xtreamium.Proxy.Data;
-using Xtreamium.Proxy.Endpoints;
-using Xtreamium.Proxy.Hubs;
-using Xtreamium.Proxy.Models;
-using Xtreamium.Proxy.Services;
-using Xtreamium.Proxy.Services.Jobs;
+using Tvnoms.Proxy.Configuration;
+using Tvnoms.Proxy.Data;
+using Tvnoms.Proxy.Endpoints;
+using Tvnoms.Proxy.Hubs;
+using Tvnoms.Proxy.Models;
+using Tvnoms.Proxy.Services;
+using Tvnoms.Proxy.Services.Jobs;
 using System.Text.Json;
 
 // Handle --version flag
@@ -21,7 +21,7 @@ if (args.Contains("--version")) {
 // Refuse to run as root on Linux — this is a per-user service and must never
 // touch files as uid 0.
 if (OperatingSystem.IsLinux() && Environment.UserName == "root") {
-  Console.Error.WriteLine("xtreamium-proxy must not be run as root. Use 'systemctl --user' or run as your desktop user.");
+  Console.Error.WriteLine("tvnoms-proxy must not be run as root. Use 'systemctl --user' or run as your desktop user.");
   return;
 }
 
@@ -35,12 +35,12 @@ Directory.CreateDirectory(AppPaths.LogsDirectory);
 
 // Seed appsettings.json into the user config dir on first run, so the user has
 // a writable copy they can tweak. Source order: a sibling appsettings.json next
-// to the binary (dev / publish output), then /usr/share/xtreamium-proxy/appsettings.json.example
+// to the binary (dev / publish output), then /usr/share/tvnoms-proxy/appsettings.json.example
 // (system package install).
 if (!File.Exists(AppPaths.AppSettingsPath)) {
   var seedCandidates = new[] {
     Path.Combine(AppContext.BaseDirectory, "appsettings.json"),
-    "/usr/share/xtreamium-proxy/appsettings.json.example",
+    "/usr/share/tvnoms-proxy/appsettings.json.example",
   };
   foreach (var seed in seedCandidates) {
     if (File.Exists(seed)) {

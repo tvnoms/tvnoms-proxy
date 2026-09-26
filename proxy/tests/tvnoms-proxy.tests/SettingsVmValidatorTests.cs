@@ -1,7 +1,7 @@
 using Xunit;
-using Xtreamium.Proxy.Models;
+using Tvnoms.Proxy.Models;
 
-namespace Xtreamium.Proxy.Tests;
+namespace Tvnoms.Proxy.Tests;
 
 public class SettingsVmValidatorTests {
   private static SettingsVm Settings(string? webUiUrl) => new() {

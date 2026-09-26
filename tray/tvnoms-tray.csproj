@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net10.0</TargetFramework>
-    <RootNamespace>Xtreamium.Tray</RootNamespace>
+    <RootNamespace>Tvnoms.Tray</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <Version>0.1.0</Version>
@@ -11,14 +11,14 @@
     <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
     <AvaloniaUseCompiledBindingsByDefault>false</AvaloniaUseCompiledBindingsByDefault>
     <ApplicationIcon>Assets/tray-icon-idle.ico</ApplicationIcon>
-    <Product>Xtreamium Tray</Product>
-    <Company>Xtreamium</Company>
-    <Copyright>Copyright © Xtreamium 2026</Copyright>
-    <Description>Notification-area status icon for Xtreamium Proxy</Description>
+    <Product>Tvnoms Tray</Product>
+    <Company>Tvnoms</Company>
+    <Copyright>Copyright © Tvnoms 2026</Copyright>
+    <Description>Notification-area status icon for Tvnoms Proxy</Description>
   </PropertyGroup>
 
   <ItemGroup>
-    <InternalsVisibleTo Include="xtreamium-tray.tests" />
+    <InternalsVisibleTo Include="tvnoms-tray.tests" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,6 +30,8 @@
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="10.0.12" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="10.0.12" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="10.0.12" />
+    <!-- Already pulled in by Avalonia.FreeDesktop; referenced directly for Services/Linux. -->
+    <PackageReference Include="Tmds.DBus.Protocol" Version="0.94.1" />
   </ItemGroup>
 
   <ItemGroup>

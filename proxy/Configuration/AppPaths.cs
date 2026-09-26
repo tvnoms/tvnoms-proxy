@@ -1,7 +1,7 @@
-﻿namespace Xtreamium.Proxy.Configuration;
+﻿namespace Tvnoms.Proxy.Configuration;
 
 public static class AppPaths {
-  public const string DirectoryName = "xtreamium-proxy";
+  public const string DirectoryName = "tvnoms-proxy";
 
   public static string AppDataDirectory => Path.Combine(
     Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),

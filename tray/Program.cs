@@ -3,9 +3,9 @@ using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Avalonia;
-using Xtreamium.Tray.Services;
+using Tvnoms.Tray.Services;
 
-namespace Xtreamium.Tray;
+namespace Tvnoms.Tray;
 
 internal static class Program {
   [STAThread]
@@ -44,7 +44,7 @@ internal static class Program {
 
     var scale = TryComputeScaleFromXrandr();
     if (scale.HasValue) {
-      Console.WriteLine($"[xtreamium-tray] No display scaling configured; using {scale.Value}x computed from xrandr.");
+      Console.WriteLine($"[tvnoms-tray] No display scaling configured; using {scale.Value}x computed from xrandr.");
       Environment.SetEnvironmentVariable("AVALONIA_GLOBAL_SCALE_FACTOR", scale.Value.ToString(CultureInfo.InvariantCulture));
     }
   }

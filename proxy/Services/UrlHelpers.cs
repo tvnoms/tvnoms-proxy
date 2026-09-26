@@ -1,6 +1,6 @@
 ﻿using System.Web;
 
-namespace Xtreamium.Proxy.Services;
+namespace Tvnoms.Proxy.Services;
 
 public static class UrlHelpers {
   /// <summary>

@@ -1,6 +1,6 @@
 using System.Data;
 
-namespace Xtreamium.Proxy.Data;
+namespace Tvnoms.Proxy.Data;
 
 /// <summary>
 /// Base repository interface for common database operations

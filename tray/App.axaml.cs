@@ -1,12 +1,14 @@
+using System.Reflection;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using Avalonia.Threading;
-using Xtreamium.Tray.ViewModels;
-using Xtreamium.Tray.Views;
+using Tvnoms.Tray.Services.Linux;
+using Tvnoms.Tray.ViewModels;
+using Tvnoms.Tray.Views;
 
-namespace Xtreamium.Tray;
+namespace Tvnoms.Tray;
 
 public class App : Application {
   private const string PickAutostartModeArg = "--pick-autostart-mode";
@@ -25,6 +27,7 @@ public class App : Application {
         desktop.ShutdownMode = ShutdownMode.OnExplicitShutdown;
         IgnoreTrayIconShutdownCancellation();
         DataContext = new TrayViewModel(desktop);
+        ShowTrayIcon(desktop);
       }
     }
 
@@ -51,6 +54,54 @@ public class App : Application {
     };
     desktop.MainWindow = window;
     window.Show();
+  }
+
+  private void ShowTrayIcon(IClassicDesktopStyleApplicationLifetime desktop) {
+    if (TrayIcon.GetIcons(this) is not { Count: > 0 } icons) {
+      return;
+    }
+
+    var trayIcon = icons[0];
+    if (OperatingSystem.IsLinux()) {
+      _ = PublishLinuxTrayIconAsync(desktop, trayIcon);
+      return;
+    }
+
+    trayIcon.IsVisible = true;
+    OpenMenuOnLeftClick(trayIcon);
+  }
+
+  private static async Task PublishLinuxTrayIconAsync(IClassicDesktopStyleApplicationLifetime desktop, TrayIcon trayIcon) {
+    var linuxTrayIcon = await LinuxTrayIcon.TryStartAsync(trayIcon);
+    if (linuxTrayIcon is null) {
+      // No session bus we can use ourselves - Avalonia's icon is still better than none, even if
+      // its menu only opens on right click.
+      trayIcon.IsVisible = true;
+      return;
+    }
+    desktop.Exit += (_, _) => linuxTrayIcon.Dispose();
+  }
+
+  // Windows only opens a tray icon's menu on right click, and Avalonia has no public API to open it
+  // any other way - but its Win32 TrayIconImpl builds and shows the menu (at the cursor) in a
+  // private OnRightClicked, so left click calls that too. Best-effort: if a future Avalonia renames
+  // it, left click just goes back to doing nothing. (Linux gets the same behaviour from
+  // LinuxTrayIcon instead.)
+  private static void OpenMenuOnLeftClick(TrayIcon trayIcon) {
+    if (!OperatingSystem.IsWindows()) {
+      return;
+    }
+
+    var impl = typeof(TrayIcon)
+      .GetFields(BindingFlags.Instance | BindingFlags.NonPublic)
+      .Select(f => f.GetValue(trayIcon))
+      .FirstOrDefault(v => v?.GetType().Name == "TrayIconImpl");
+    var showMenu = impl?.GetType().GetMethod("OnRightClicked", BindingFlags.Instance | BindingFlags.NonPublic);
+    if (showMenu is null) {
+      return;
+    }
+
+    trayIcon.Clicked += (_, _) => showMenu.Invoke(impl, null);
   }
 
   // On Linux, Avalonia's D-Bus tray icon cancels its own watcher when it's disposed at shutdown,

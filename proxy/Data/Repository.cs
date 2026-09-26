@@ -2,7 +2,7 @@ using System.Data;
 using Dapper;
 using Dapper.Contrib.Extensions;
 
-namespace Xtreamium.Proxy.Data;
+namespace Tvnoms.Proxy.Data;
 
 /// <summary>
 /// Base repository implementation using Dapper

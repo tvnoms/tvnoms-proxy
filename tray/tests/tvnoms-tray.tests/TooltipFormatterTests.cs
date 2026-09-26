@@ -1,11 +1,11 @@
-using Xtreamium.Tray.Services;
+using Tvnoms.Tray.Services;
 using Xunit;
 
-namespace Xtreamium.Tray.Tests;
+namespace Tvnoms.Tray.Tests;
 
 public class TooltipFormatterTests {
   private const string Address = "192.168.1.10:8963";
-  private const string Header = "Xtreamium Proxy - listening on 192.168.1.10:8963";
+  private const string Header = "Tvnoms Proxy - listening on 192.168.1.10:8963";
 
   [Fact]
   public void No_active_recordings_shows_listen_address_only() {

@@ -44,13 +44,13 @@ cd "$AUR_DIR"
 # Set GIT_SSH_COMMAND to use BatchMode (prevents hanging on interactive prompts)
 export GIT_SSH_COMMAND="${GIT_SSH_COMMAND:-ssh -o BatchMode=yes -o StrictHostKeyChecking=no}"
 
-if ! git clone ssh://aur@aur.archlinux.org/xtreamium-proxy.git; then
+if ! git clone ssh://aur@aur.archlinux.org/tvnoms-proxy.git; then
     print_error "Failed to clone AUR repository"
     print_error "Make sure your SSH key is configured for AUR access"
     exit 1
 fi
 
-cd xtreamium-proxy
+cd tvnoms-proxy
 
 # Update PKGBUILD with new version
 print_info "Updating PKGBUILD..."
@@ -58,7 +58,7 @@ sed "s/VERSION_PLACEHOLDER/$VERSION/g" "$SCRIPT_DIR/PKGBUILD.template" > PKGBUIL
 
 # Copy the install script
 print_info "Copying install script..."
-cp "$SCRIPT_DIR/xtreamium-proxy.install" .
+cp "$SCRIPT_DIR/tvnoms-proxy.install" .
 
 # Update .SRCINFO
 print_info "Generating .SRCINFO..."
@@ -66,21 +66,21 @@ if ! command -v makepkg &> /dev/null; then
     print_warning "makepkg not found, attempting to generate .SRCINFO manually"
     # Generate basic .SRCINFO
     cat > .SRCINFO << EOF
-pkgbase = xtreamium-proxy
-	pkgdesc = Xtreamium Proxy Service
+pkgbase = tvnoms-proxy
+	pkgdesc = TV Noms Proxy Service
 	pkgver = $VERSION
 	pkgrel = 1
-	url = https://github.com/xtreamium/xtreamium-proxy
+	url = https://github.com/tvnoms/tvnoms-proxy
 	arch = x86_64
 	license = MIT
 	depends = glibc
-	provides = xtreamium-proxy
-	conflicts = xtreamium-proxy
-	backup = etc/xtreamium-proxy/appsettings.json
-	source = https://github.com/xtreamium/xtreamium-proxy/releases/download/v$VERSION/xtreamium-proxy-linux.tar.gz
+	provides = tvnoms-proxy
+	conflicts = tvnoms-proxy
+	backup = etc/tvnoms-proxy/appsettings.json
+	source = https://github.com/tvnoms/tvnoms-proxy/releases/download/v$VERSION/tvnoms-proxy-linux.tar.gz
 	sha256sums = SKIP
 
-pkgname = xtreamium-proxy
+pkgname = tvnoms-proxy
 EOF
 else
     makepkg --printsrcinfo > .SRCINFO
@@ -99,7 +99,7 @@ fi
 
 # Commit and push
 print_info "Committing changes..."
-git add PKGBUILD .SRCINFO xtreamium-proxy.install
+git add PKGBUILD .SRCINFO tvnoms-proxy.install
 git commit -m "Update to version $VERSION"
 
 print_info "Pushing to AUR..."

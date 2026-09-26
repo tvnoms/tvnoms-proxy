@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
-using Xtreamium.Proxy.Services;
+using Tvnoms.Proxy.Services;
 
-namespace Xtreamium.Proxy.Models;
+namespace Tvnoms.Proxy.Models;
 
 /// <summary>
 /// An edit to a recording that has not started yet. The stream URL is deliberately absent -

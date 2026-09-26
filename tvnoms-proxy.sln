@@ -1,12 +1,12 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "xtreamium-proxy", "proxy\xtreamium-proxy.csproj", "{E36A294C-F03F-4B4A-8A7A-E79F1BAB6BA1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tvnoms-proxy", "proxy\tvnoms-proxy.csproj", "{E36A294C-F03F-4B4A-8A7A-E79F1BAB6BA1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "xtreamium-proxy.tests", "proxy\tests\xtreamium-proxy.tests\xtreamium-proxy.tests.csproj", "{2C5F0D13-8DCC-4A72-B37F-8D9120F340CB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tvnoms-proxy.tests", "proxy\tests\tvnoms-proxy.tests\tvnoms-proxy.tests.csproj", "{2C5F0D13-8DCC-4A72-B37F-8D9120F340CB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "xtreamium-tray", "tray\xtreamium-tray.csproj", "{A190AD95-CA20-45FE-87B9-920CCA838F5A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tvnoms-tray", "tray\tvnoms-tray.csproj", "{A190AD95-CA20-45FE-87B9-920CCA838F5A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "xtreamium-tray.tests", "tray\tests\xtreamium-tray.tests\xtreamium-tray.tests.csproj", "{AEE37630-FE20-4D29-BABB-E69C68C84F52}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tvnoms-tray.tests", "tray\tests\tvnoms-tray.tests\tvnoms-tray.tests.csproj", "{AEE37630-FE20-4D29-BABB-E69C68C84F52}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

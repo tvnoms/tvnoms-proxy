@@ -1,9 +1,9 @@
 using Microsoft.Extensions.Options;
-using Xtreamium.Proxy.Configuration;
-using Xtreamium.Proxy.Data.Repositories;
-using Xtreamium.Proxy.Models;
+using Tvnoms.Proxy.Configuration;
+using Tvnoms.Proxy.Data.Repositories;
+using Tvnoms.Proxy.Models;
 
-namespace Xtreamium.Proxy.Data.Services;
+namespace Tvnoms.Proxy.Data.Services;
 
 /// <summary>
 /// Helper service for settings operations - will be replaced by direct repository usage

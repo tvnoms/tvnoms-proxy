@@ -1,7 +1,7 @@
 using Dapper;
-using Xtreamium.Proxy.Data.Models;
+using Tvnoms.Proxy.Data.Models;
 
-namespace Xtreamium.Proxy.Data.Repositories;
+namespace Tvnoms.Proxy.Data.Repositories;
 
 public interface IRecordingRepository : IRepository<Recording> {
   Task<Recording?> GetByJobIdAsync(string jobId);

@@ -1,5 +1,5 @@
 using Quartz;
-namespace Xtreamium.Proxy.Services.Jobs;
+namespace Tvnoms.Proxy.Services.Jobs;
 public static class JobsStartup {
   public static IServiceCollection AddJobs(this IServiceCollection services,
     string jobsDb) {

@@ -1,8 +1,8 @@
 using System.Data;
 using Microsoft.Data.Sqlite;
-using Xtreamium.Proxy.Configuration;
+using Tvnoms.Proxy.Configuration;
 
-namespace Xtreamium.Proxy.Data;
+namespace Tvnoms.Proxy.Data;
 
 /// <summary>
 /// Simplified database connection factory and configuration

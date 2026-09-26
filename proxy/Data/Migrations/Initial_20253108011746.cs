@@ -1,7 +1,7 @@
 using FluentMigrator;
-using Xtreamium.Proxy.Configuration;
+using Tvnoms.Proxy.Configuration;
 
-namespace Xtreamium.Proxy.Data.Migrations;
+namespace Tvnoms.Proxy.Data.Migrations;
 
 [Migration(20253108011746)]
 public class InitialTables : Migration {

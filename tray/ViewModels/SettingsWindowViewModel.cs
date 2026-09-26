@@ -1,9 +1,9 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Xtreamium.Tray.Models;
-using Xtreamium.Tray.Services;
+using Tvnoms.Tray.Models;
+using Tvnoms.Tray.Services;
 
-namespace Xtreamium.Tray.ViewModels;
+namespace Tvnoms.Tray.ViewModels;
 
 /// <summary>Edits only the "Open web UI" target. Every other proxy setting is managed through the
 /// web UI itself (which talks to the proxy directly) - the tray only needs a way to point at that

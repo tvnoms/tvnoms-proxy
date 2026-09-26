@@ -1,8 +1,8 @@
-namespace Xtreamium.Tray.Models;
+namespace Tvnoms.Tray.Models;
 
-// Local mirrors of xtreamium-proxy's Data/Models/Recording.cs and Models/RecordingEvents.cs.
-// Kept as plain DTOs rather than a project/package reference, since xtreamium-proxy and
-// xtreamium-tray are independent repos with independent release cadences.
+// Local mirrors of tvnoms-proxy's Data/Models/Recording.cs and Models/RecordingEvents.cs.
+// Kept as plain DTOs rather than a project/package reference, since tvnoms-proxy and
+// tvnoms-tray are independent repos with independent release cadences.
 
 public record RecordingDto {
   public Guid Id { get; init; }

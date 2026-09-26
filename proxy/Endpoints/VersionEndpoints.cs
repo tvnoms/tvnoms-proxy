@@ -1,6 +1,6 @@
-﻿using Xtreamium.Proxy.Services;
+﻿using Tvnoms.Proxy.Services;
 
-namespace Xtreamium.Proxy.Endpoints;
+namespace Tvnoms.Proxy.Endpoints;
 
 public class VersionInfo {
   public required string Version { get; set; }

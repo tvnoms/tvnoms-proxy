@@ -1,12 +1,12 @@
 #!/bin/bash
-# Post-remove for xtreamium-proxy (.deb / .rpm).
-# Per-user state in ~/.config/xtreamium-proxy is intentionally left in place.
+# Post-remove for tvnoms-proxy (.deb / .rpm).
+# Per-user state in ~/.config/tvnoms-proxy is intentionally left in place.
 
 cat <<'EOF'
 
-==> Xtreamium Proxy removed.
+==> TV Noms Proxy removed.
 
 Per-user state was left untouched. To remove it manually:
-  rm -rf ~/.config/xtreamium-proxy
+  rm -rf ~/.config/tvnoms-proxy
 
 EOF

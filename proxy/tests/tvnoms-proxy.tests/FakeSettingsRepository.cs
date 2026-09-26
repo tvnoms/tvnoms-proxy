@@ -1,7 +1,7 @@
-﻿using Xtreamium.Proxy.Data.Models;
-using Xtreamium.Proxy.Data.Repositories;
+﻿using Tvnoms.Proxy.Data.Models;
+using Tvnoms.Proxy.Data.Repositories;
 
-namespace Xtreamium.Proxy.Tests;
+namespace Tvnoms.Proxy.Tests;
 
 /// <summary>
 /// In-memory <see cref="ISettingsRepository"/> backed by a plain dictionary. Note it does not

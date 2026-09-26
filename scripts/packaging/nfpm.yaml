@@ -1,24 +1,24 @@
-# nfpm configuration for xtreamium-proxy
+# nfpm configuration for tvnoms-proxy
 # https://nfpm.goreleaser.com/
 #
-# This packages xtreamium-proxy as a per-user systemd service. The binary lives
+# This packages tvnoms-proxy as a per-user systemd service. The binary lives
 # in /usr/bin so any user on the system can run it, but the service identity is
 # always the desktop user (via `systemctl --user`). No system user is created,
 # no files are written under /etc, /opt, or /var.
 
-name: "xtreamium-proxy"
+name: "tvnoms-proxy"
 arch: "amd64"
 platform: "linux"
 version: "${VERSION}"
 section: "default"
 priority: "optional"
-maintainer: "Xtreamium <support@xtreamium.com>"
+maintainer: "TV Noms <support@tvnoms.com>"
 description: |
-  Xtreamium Proxy - A streaming proxy service
+  TV Noms Proxy - A streaming proxy service
   A modern streaming proxy built with .NET 9, run as a per-user systemd service.
   Includes a notification-area icon showing recording status.
-vendor: "Xtreamium"
-homepage: "https://github.com/xtreamium/xtreamium-proxy"
+vendor: "TV Noms"
+homepage: "https://github.com/tvnoms/tvnoms-proxy"
 license: "MIT"
 
 depends:
@@ -28,38 +28,38 @@ recommends:
   - mpv
 
 contents:
-  - src: "../../publish/linux/xtreamium-proxy"
-    dst: "/usr/bin/xtreamium-proxy"
+  - src: "../../publish/linux/tvnoms-proxy"
+    dst: "/usr/bin/tvnoms-proxy"
     file_info:
       mode: 0755
 
   - src: "../../publish/linux/appsettings.json"
-    dst: "/usr/share/xtreamium-proxy/appsettings.json.example"
+    dst: "/usr/share/tvnoms-proxy/appsettings.json.example"
     file_info:
       mode: 0644
 
-  - src: "../../publish/linux/xtreamium-proxy.service"
-    dst: "/usr/lib/systemd/user/xtreamium-proxy.service"
+  - src: "../../publish/linux/tvnoms-proxy.service"
+    dst: "/usr/lib/systemd/user/tvnoms-proxy.service"
     file_info:
       mode: 0644
 
   # Notification-area icon. A separate process (it needs the desktop session, which the service
   # doesn't have), but its lifecycle is bound to the service by the unit below: starting the
   # proxy starts it, stopping/restarting the proxy stops/restarts it.
-  - src: "../../publish/linux/xtreamium-tray"
-    dst: "/usr/bin/xtreamium-tray"
+  - src: "../../publish/linux/tvnoms-tray"
+    dst: "/usr/bin/tvnoms-tray"
     file_info:
       mode: 0755
 
-  - src: "../../publish/linux/xtreamium-tray.service"
-    dst: "/usr/lib/systemd/user/xtreamium-tray.service"
+  - src: "../../publish/linux/tvnoms-tray.service"
+    dst: "/usr/lib/systemd/user/tvnoms-tray.service"
     file_info:
       mode: 0644
 
   # Starts the tray when the desktop session comes up *after* the proxy already started (the
   # usual order at login). It also starts if the proxy is down, so its menu can start the proxy.
-  - src: "../xtreamium-tray.service"
-    dst: "/usr/lib/systemd/user/graphical-session.target.wants/xtreamium-tray.service"
+  - src: "../tvnoms-tray.service"
+    dst: "/usr/lib/systemd/user/graphical-session.target.wants/tvnoms-tray.service"
     type: symlink
 
 scripts:
@@ -83,13 +83,13 @@ overrides:
 
 rpm:
   group: "Applications/Internet"
-  summary: "Xtreamium Proxy - A streaming proxy service"
+  summary: "TV Noms Proxy - A streaming proxy service"
   compression: lzma
 
 deb:
   fields:
-    Bugs: "https://github.com/xtreamium/xtreamium-proxy/issues"
+    Bugs: "https://github.com/tvnoms/tvnoms-proxy/issues"
 
 archlinux:
-  pkgbase: "xtreamium-proxy"
-  packager: "Xtreamium <support@xtreamium.com>"
+  pkgbase: "tvnoms-proxy"
+  packager: "TV Noms <support@tvnoms.com>"

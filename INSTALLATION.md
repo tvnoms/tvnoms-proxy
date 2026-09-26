@@ -1,6 +1,6 @@
-# Xtreamium Proxy Installation Guide
+# TV Noms Proxy Installation Guide
 
-This guide covers the installation of Xtreamium Proxy on both Windows and Linux systems using the pre-built packages
+This guide covers the installation of TV Noms Proxy on both Windows and Linux systems using the pre-built packages
 from GitHub releases.
 
 ## System Requirements
@@ -12,11 +12,11 @@ from GitHub releases.
 
 ## Download
 
-Download the latest release packages from the [GitHub Releases](https://github.com/your-repo/xtreamium-proxy/releases)
+Download the latest release packages from the [GitHub Releases](https://github.com/your-repo/tvnoms-proxy/releases)
 page:
 
-- **Windows**: `xtreamium-proxy-windows.zip`
-- **Linux**: `xtreamium-proxy-linux.tar.gz`
+- **Windows**: `tvnoms-proxy-windows.zip`
+- **Linux**: `tvnoms-proxy-linux.tar.gz`
 
 ---
 
@@ -31,8 +31,8 @@ page:
 
 1. **Download and Extract**
    ```
-   Download xtreamium-proxy-windows.zip
-   Extract to a folder (e.g., C:\xtreamium-proxy)
+   Download tvnoms-proxy-windows.zip
+   Extract to a folder (e.g., C:\tvnoms-proxy)
    ```
 
 2. **Install as Windows Service**
@@ -42,7 +42,7 @@ page:
 
 3. **Verify Installation**
   - Open Services (services.msc)
-  - Look for "Xtreamium Proxy Service"
+  - Look for "TV Noms Proxy Service"
   - Status should show "Running"
 
 ### Alternative: Manual Installation
@@ -54,23 +54,23 @@ If you prefer not to use the automated installer:
 cd C:\path\to\extracted\files
 
 # Create the service manually
-sc create XtreamiumProxy binPath= "C:\path\to\xtreamium-proxy.exe" DisplayName= "Xtreamium Proxy Service" start= auto
+sc create TvnomsProxy binPath= "C:\path\to\tvnoms-proxy.exe" DisplayName= "TV Noms Proxy Service" start= auto
 
 # Start the service
-sc start XtreamiumProxy
+sc start TvnomsProxy
 ```
 
 ### Windows Service Management
 
 ```batch
 # Check service status
-sc query XtreamiumProxy
+sc query TvnomsProxy
 
 # Start service
-sc start XtreamiumProxy
+sc start TvnomsProxy
 
 # Stop service
-sc stop XtreamiumProxy
+sc stop TvnomsProxy
 
 # View logs in Event Viewer
 eventvwr.msc → Applications and Services Logs
@@ -95,9 +95,9 @@ eventvwr.msc → Applications and Services Logs
 
 1. **Download and Extract**
    ```bash
-   wget https://github.com/your-repo/xtreamium-proxy/releases/latest/download/xtreamium-proxy-linux.tar.gz
-   tar -xzf xtreamium-proxy-linux.tar.gz
-   cd xtreamium-proxy-linux
+   wget https://github.com/your-repo/tvnoms-proxy/releases/latest/download/tvnoms-proxy-linux.tar.gz
+   tar -xzf tvnoms-proxy-linux.tar.gz
+   cd tvnoms-proxy-linux
    ```
 
 2. **Run the Installer**
@@ -108,13 +108,13 @@ eventvwr.msc → Applications and Services Logs
 
 3. **Choose Installation Type**
   - **Option 1**: System-wide service (requires sudo)
-    - Installs to `/opt/xtreamium-proxy`
-    - Runs as dedicated `xtreamium` user
+    - Installs to `/opt/tvnoms-proxy`
+    - Runs as dedicated `tvnoms` user
     - Starts automatically on boot
     - Recommended for production servers
 
   - **Option 2**: User service (no sudo required)
-    - Installs to `~/.local/opt/xtreamium-proxy`
+    - Installs to `~/.local/opt/tvnoms-proxy`
     - Runs as current user
     - Starts when user logs in
     - Good for desktop environments
@@ -125,37 +125,37 @@ eventvwr.msc → Applications and Services Logs
 
 ```bash
 # Create system user
-sudo useradd -r -s /bin/false xtreamium
+sudo useradd -r -s /bin/false tvnoms
 
 # Create installation directory
-sudo mkdir -p /opt/xtreamium-proxy
-sudo cp xtreamium-proxy /opt/xtreamium-proxy/
-sudo cp *.json /opt/xtreamium-proxy/
-sudo chown -R xtreamium:xtreamium /opt/xtreamium-proxy
-sudo chmod +x /opt/xtreamium-proxy/xtreamium-proxy
+sudo mkdir -p /opt/tvnoms-proxy
+sudo cp tvnoms-proxy /opt/tvnoms-proxy/
+sudo cp *.json /opt/tvnoms-proxy/
+sudo chown -R tvnoms:tvnoms /opt/tvnoms-proxy
+sudo chmod +x /opt/tvnoms-proxy/tvnoms-proxy
 
 # Install systemd service
-sudo cp xtreamium-proxy.service /etc/systemd/system/
+sudo cp tvnoms-proxy.service /etc/systemd/system/
 sudo systemctl daemon-reload
-sudo systemctl enable xtreamium-proxy
-sudo systemctl start xtreamium-proxy
+sudo systemctl enable tvnoms-proxy
+sudo systemctl start tvnoms-proxy
 ```
 
 #### User Installation
 
 ```bash
 # Create user directory
-mkdir -p ~/.local/opt/xtreamium-proxy
-cp xtreamium-proxy ~/.local/opt/xtreamium-proxy/
-cp *.json ~/.local/opt/xtreamium-proxy/
-chmod +x ~/.local/opt/xtreamium-proxy/xtreamium-proxy
+mkdir -p ~/.local/opt/tvnoms-proxy
+cp tvnoms-proxy ~/.local/opt/tvnoms-proxy/
+cp *.json ~/.local/opt/tvnoms-proxy/
+chmod +x ~/.local/opt/tvnoms-proxy/tvnoms-proxy
 
 # Install user service
 mkdir -p ~/.config/systemd/user
-cp xtreamium-proxy-user.service ~/.config/systemd/user/
+cp tvnoms-proxy-user.service ~/.config/systemd/user/
 systemctl --user daemon-reload
-systemctl --user enable xtreamium-proxy-user
-systemctl --user start xtreamium-proxy-user
+systemctl --user enable tvnoms-proxy-user
+systemctl --user start tvnoms-proxy-user
 
 # Enable lingering (optional, for auto-start on boot)
 sudo loginctl enable-linger $USER
@@ -167,32 +167,32 @@ sudo loginctl enable-linger $USER
 
 ```bash
 # Check status
-sudo systemctl status xtreamium-proxy
+sudo systemctl status tvnoms-proxy
 
 # Start/stop/restart
-sudo systemctl start xtreamium-proxy
-sudo systemctl stop xtreamium-proxy
-sudo systemctl restart xtreamium-proxy
+sudo systemctl start tvnoms-proxy
+sudo systemctl stop tvnoms-proxy
+sudo systemctl restart tvnoms-proxy
 
 # View logs
-sudo journalctl -u xtreamium-proxy -f
-sudo journalctl -u xtreamium-proxy --since today
+sudo journalctl -u tvnoms-proxy -f
+sudo journalctl -u tvnoms-proxy --since today
 ```
 
 #### User Service
 
 ```bash
 # Check status
-systemctl --user status xtreamium-proxy-user
+systemctl --user status tvnoms-proxy-user
 
 # Start/stop/restart
-systemctl --user start xtreamium-proxy-user
-systemctl --user stop xtreamium-proxy-user
-systemctl --user restart xtreamium-proxy-user
+systemctl --user start tvnoms-proxy-user
+systemctl --user stop tvnoms-proxy-user
+systemctl --user restart tvnoms-proxy-user
 
 # View logs
-journalctl --user -u xtreamium-proxy-user -f
-journalctl --user -u xtreamium-proxy-user --since today
+journalctl --user -u tvnoms-proxy-user -f
+journalctl --user -u tvnoms-proxy-user --since today
 ```
 
 ### Uninstallation
@@ -208,19 +208,19 @@ Or manually:
 
 ```bash
 # System service
-sudo systemctl stop xtreamium-proxy
-sudo systemctl disable xtreamium-proxy
-sudo rm /etc/systemd/system/xtreamium-proxy.service
+sudo systemctl stop tvnoms-proxy
+sudo systemctl disable tvnoms-proxy
+sudo rm /etc/systemd/system/tvnoms-proxy.service
 sudo systemctl daemon-reload
-sudo rm -rf /opt/xtreamium-proxy
-sudo userdel xtreamium
+sudo rm -rf /opt/tvnoms-proxy
+sudo userdel tvnoms
 
 # User service
-systemctl --user stop xtreamium-proxy-user
-systemctl --user disable xtreamium-proxy-user
-rm ~/.config/systemd/user/xtreamium-proxy-user.service
+systemctl --user stop tvnoms-proxy-user
+systemctl --user disable tvnoms-proxy-user
+rm ~/.config/systemd/user/tvnoms-proxy-user.service
 systemctl --user daemon-reload
-rm -rf ~/.local/opt/xtreamium-proxy
+rm -rf ~/.local/opt/tvnoms-proxy
 ```
 
 ---
@@ -239,8 +239,8 @@ The application uses `appsettings.json` for configuration. Key settings include:
 ### Configuration File Location
 
 - **Windows**: Same directory as executable
-- **Linux System**: `/opt/xtreamium-proxy/appsettings.json`
-- **Linux User**: `~/.local/opt/xtreamium-proxy/appsettings.json`
+- **Linux System**: `/opt/tvnoms-proxy/appsettings.json`
+- **Linux User**: `~/.local/opt/tvnoms-proxy/appsettings.json`
 
 ### Applying Configuration Changes
 
@@ -249,20 +249,20 @@ After editing configuration:
 **Windows:**
 
 ```batch
-sc stop XtreamiumProxy
-sc start XtreamiumProxy
+sc stop TvnomsProxy
+sc start TvnomsProxy
 ```
 
 **Linux System:**
 
 ```bash
-sudo systemctl restart xtreamium-proxy
+sudo systemctl restart tvnoms-proxy
 ```
 
 **Linux User:**
 
 ```bash
-systemctl --user restart xtreamium-proxy-user
+systemctl --user restart tvnoms-proxy-user
 ```
 
 ---
@@ -296,8 +296,8 @@ Once installed and running, the application will be available at:
   - For system installation, ensure you have sudo access
 
 2. **Service fails to start**
-  - Check logs: `journalctl -u xtreamium-proxy`
-  - Verify executable permissions: `chmod +x xtreamium-proxy`
+  - Check logs: `journalctl -u tvnoms-proxy`
+  - Verify executable permissions: `chmod +x tvnoms-proxy`
   - Check systemd service file syntax
 
 3. **Port binding issues**
@@ -329,7 +329,7 @@ Once installed and running, the application will be available at:
 
 ### Linux
 
-- System service runs under dedicated `xtreamium` user with limited privileges
+- System service runs under dedicated `tvnoms` user with limited privileges
 - Security settings include `NoNewPrivileges`, `ProtectSystem`, `ProtectHome`
 - User service runs with user's privileges
 - Configure iptables/firewall rules as needed

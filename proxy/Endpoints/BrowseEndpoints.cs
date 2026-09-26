@@ -1,4 +1,4 @@
-﻿namespace Xtreamium.Proxy.Endpoints;
+﻿namespace Tvnoms.Proxy.Endpoints;
 
 public static class BrowseEndpoints {
   public static void RegisterBrowseEndpoints(this IEndpointRouteBuilder app) {

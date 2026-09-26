@@ -1,4 +1,4 @@
-namespace Xtreamium.Proxy.Configuration;
+namespace Tvnoms.Proxy.Configuration;
 
 /// <summary>
 /// Strongly-typed configuration for application settings
@@ -40,14 +40,14 @@ public class RecordingsConfiguration {
       // Running as Windows Service (LOCAL SYSTEM)
       return System.IO.Path.Combine(
         Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData),
-        "Xtreamium",
+        "Tvnoms",
         "Recordings");
     }
 
     // Regular user context
     return System.IO.Path.Combine(
       Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
-      "XtreamiumRecordings");
+      "TvnomsRecordings");
   }
 
   public string Path { get; set; } = DefaultRecordingsPath;

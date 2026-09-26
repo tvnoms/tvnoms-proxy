@@ -1,14 +1,14 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        x:Class="Xtreamium.Tray.Views.AutostartChoiceWindow"
-        Title="Xtreamium Proxy Setup"
+        x:Class="Tvnoms.Tray.Views.AutostartChoiceWindow"
+        Title="Tvnoms Proxy Setup"
         Width="440"
         SizeToContent="Height"
         CanResize="False"
         WindowStartupLocation="CenterScreen">
   <StackPanel Margin="20" Spacing="12">
 
-    <TextBlock Text="How should Xtreamium Proxy start?" FontWeight="SemiBold" FontSize="15" />
+    <TextBlock Text="How should Tvnoms Proxy start?" FontWeight="SemiBold" FontSize="15" />
     <TextBlock Text="Pick one - this can't be changed later without reinstalling."
                Foreground="Gray"
                TextWrapping="Wrap"

@@ -1,6 +1,6 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using Xtreamium.Proxy.Configuration;
+using Tvnoms.Proxy.Configuration;
 
 #if WINDOWS
 using System.ComponentModel;
@@ -9,11 +9,11 @@ using Velopack;
 using Velopack.Sources;
 #endif
 
-namespace Xtreamium.Proxy.Services;
+namespace Tvnoms.Proxy.Services;
 
 public class UpdateManager : IDisposable {
 #if WINDOWS
-  private const string AutostartName = "XtreamiumProxy";
+  private const string AutostartName = "TvnomsProxy";
 
   private enum AutostartMode { Service, ScheduledTask, RunKey }
 
@@ -23,7 +23,7 @@ public class UpdateManager : IDisposable {
 
   public UpdateManager(ILogger<UpdateManager> logger, IConfiguration configuration) {
     _logger = logger;
-    _updateUrl = configuration["UpdateUrl"] ?? "https://github.com/xtreamium/xtreamium-proxy";
+    _updateUrl = configuration["UpdateUrl"] ?? "https://github.com/tvnoms/tvnoms-proxy";
 
     try {
       var source = new GithubSource(_updateUrl, null, false);
@@ -227,12 +227,12 @@ public class UpdateManager : IDisposable {
         return AutostartMode.RunKey;
       }
 
-      var trayExePath = Path.Combine(exeDir, "xtreamium-tray.exe");
+      var trayExePath = Path.Combine(exeDir, "tvnoms-tray.exe");
       if (!File.Exists(trayExePath)) {
         return AutostartMode.RunKey;
       }
 
-      var outputPath = Path.Combine(Path.GetTempPath(), $"xtreamium-autostart-choice-{Guid.NewGuid():N}.txt");
+      var outputPath = Path.Combine(Path.GetTempPath(), $"tvnoms-autostart-choice-{Guid.NewGuid():N}.txt");
 
       var startInfo = new System.Diagnostics.ProcessStartInfo {
         FileName = trayExePath,
@@ -266,20 +266,20 @@ public class UpdateManager : IDisposable {
       var commonDesktopPath = Environment.GetFolderPath(Environment.SpecialFolder.CommonDesktopDirectory);
 
       // Remove shortcuts from user desktop
-      var userShortcut = Path.Combine(desktopPath, "Xtreamium Proxy.lnk");
+      var userShortcut = Path.Combine(desktopPath, "Tvnoms Proxy.lnk");
       if (File.Exists(userShortcut))
         File.Delete(userShortcut);
 
-      var userShortcut2 = Path.Combine(desktopPath, "XtreamiumProxy.lnk");
+      var userShortcut2 = Path.Combine(desktopPath, "TvnomsProxy.lnk");
       if (File.Exists(userShortcut2))
         File.Delete(userShortcut2);
 
       // Remove shortcuts from all users desktop
-      var commonShortcut = Path.Combine(commonDesktopPath, "Xtreamium Proxy.lnk");
+      var commonShortcut = Path.Combine(commonDesktopPath, "Tvnoms Proxy.lnk");
       if (File.Exists(commonShortcut))
         File.Delete(commonShortcut);
 
-      var commonShortcut2 = Path.Combine(commonDesktopPath, "XtreamiumProxy.lnk");
+      var commonShortcut2 = Path.Combine(commonDesktopPath, "TvnomsProxy.lnk");
       if (File.Exists(commonShortcut2))
         File.Delete(commonShortcut2);
     } catch (Exception ex) {
@@ -300,7 +300,7 @@ public class UpdateManager : IDisposable {
 
     try {
       var createExitCode = RunElevated(ScPath,
-        $"create {AutostartName} binPath= \"{exePath}\" DisplayName= \"Xtreamium Proxy Service\" start= auto");
+        $"create {AutostartName} binPath= \"{exePath}\" DisplayName= \"Tvnoms Proxy Service\" start= auto");
 
       if (createExitCode == 0) {
         RunElevated(ScPath, $"start {AutostartName}");
@@ -419,7 +419,7 @@ public class UpdateManager : IDisposable {
         return;
       }
 
-      var trayExePath = Path.Combine(exeDir, "xtreamium-tray.exe");
+      var trayExePath = Path.Combine(exeDir, "tvnoms-tray.exe");
       if (!File.Exists(trayExePath)) {
         return;
       }

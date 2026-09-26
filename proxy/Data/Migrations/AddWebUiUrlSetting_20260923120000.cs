@@ -1,8 +1,8 @@
 using FluentMigrator;
 using Microsoft.Extensions.Options;
-using Xtreamium.Proxy.Configuration;
+using Tvnoms.Proxy.Configuration;
 
-namespace Xtreamium.Proxy.Data.Migrations;
+namespace Tvnoms.Proxy.Data.Migrations;
 
 /// <summary>
 /// Backfills the "open web UI" target for existing installs. Previously this was derived from

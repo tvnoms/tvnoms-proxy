@@ -7,7 +7,7 @@ param(
 
 # Get version from .csproj if not provided
 if ([string]::IsNullOrEmpty($Version)) {
-    [xml]$csproj = Get-Content "proxy/xtreamium-proxy.csproj"
+    [xml]$csproj = Get-Content "proxy/tvnoms-proxy.csproj"
     $Version = $csproj.Project.PropertyGroup.Version
 }
 
@@ -21,7 +21,7 @@ New-Item -ItemType Directory -Force -Path $OutputDir | Out-Null
 
 # Build the application
 Write-Host "Building application..." -ForegroundColor Yellow
-dotnet publish proxy/xtreamium-proxy.csproj `
+dotnet publish proxy/tvnoms-proxy.csproj `
     -c Release `
     -r win-x64 `
     --self-contained true `
@@ -40,10 +40,10 @@ Remove-Item -Path "publish/win-x64/appsettings.Development.json" -ErrorAction Si
 
 # Build the tray icon into the same output folder, so Velopack bundles both into one installer.
 # The proxy service and the tray are separate processes at runtime (the service has no desktop) —
-# see UpdateManager's first-run hook, which launches xtreamium-tray.exe once after installing the
+# see UpdateManager's first-run hook, which launches tvnoms-tray.exe once after installing the
 # service. The tray itself follows the service's lifecycle (it exits when the service stops).
 Write-Host "Building tray icon..." -ForegroundColor Yellow
-dotnet publish tray/xtreamium-tray.csproj `
+dotnet publish tray/tvnoms-tray.csproj `
     -c Release `
     -r win-x64 `
     --self-contained true `
@@ -70,13 +70,13 @@ $iconPath = "scripts/packaging/branding/app-icon.ico"
 # Build installer with Velopack
 $vpkArgs = @(
     "pack",
-    "--packId", "XtreamiumProxy",
+    "--packId", "TvnomsProxy",
     "--packVersion", $Version,
     "--packDir", "publish/win-x64",
-    "--mainExe", "xtreamium-proxy.exe",
+    "--mainExe", "tvnoms-proxy.exe",
     "--outputDir", "publish/releases",
-    "--packTitle", "Xtreamium Proxy",
-    "--packAuthors", "Xtreamium"
+    "--packTitle", "TV Noms Proxy",
+    "--packAuthors", "TV Noms"
     # Note: Velopack doesn't create desktop shortcuts by default
     # Shortcut creation is controlled via the installer options, not vpk pack flags
 )
@@ -95,7 +95,7 @@ if ($LASTEXITCODE -ne 0) {
 }
 
 # Copy installer to output directory
-$installerName = "XtreamiumProxy-Setup-$Version.exe"
+$installerName = "TvnomsProxy-Setup-$Version.exe"
 $sourceInstaller = Get-ChildItem -Path "publish/releases" -Filter "*Setup.exe" | Select-Object -First 1
 
 if ($sourceInstaller) {

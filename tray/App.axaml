@@ -1,13 +1,16 @@
 <Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             x:Class="Xtreamium.Tray.App">
+             x:Class="Tvnoms.Tray.App">
   <Application.Styles>
     <FluentTheme />
   </Application.Styles>
 
   <TrayIcon.Icons>
     <TrayIcons>
-      <TrayIcon Icon="{Binding IconSource}"
+      <!-- Starts hidden: App.axaml.cs shows it on Windows/macOS, while on Linux it stays hidden
+           and Services/Linux/LinuxTrayIcon publishes its icon, tooltip and menu over D-Bus. -->
+      <TrayIcon IsVisible="False"
+                Icon="{Binding IconSource}"
                 ToolTipText="{Binding TooltipText}">
         <TrayIcon.Menu>
           <NativeMenu>

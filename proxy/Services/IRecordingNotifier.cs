@@ -1,6 +1,6 @@
-﻿using Xtreamium.Proxy.Data.Models;
+﻿using Tvnoms.Proxy.Data.Models;
 
-namespace Xtreamium.Proxy.Services;
+namespace Tvnoms.Proxy.Services;
 
 /// <summary>
 /// Pushes recording activity to connected web clients.

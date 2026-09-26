@@ -23,7 +23,7 @@ GIT_ROOT=$(git rev-parse --show-toplevel)
 cd "$GIT_ROOT"
 
 # Project file path (relative to git root)
-PROJECT_FILE="proxy/xtreamium-proxy.csproj"
+PROJECT_FILE="proxy/tvnoms-proxy.csproj"
 
 # Parse arguments
 INCREMENT_TYPE="patch"
@@ -160,10 +160,10 @@ $CHANGELOG
 
 ## Installation
 Download the appropriate package for your platform:
-- **Windows**: \`XtreamiumProxy-Setup-$NEW_VERSION.exe\` (auto-updating installer)
-- **Linux (Debian/Ubuntu)**: \`xtreamium-proxy_${NEW_VERSION}_amd64.deb\`
-- **Linux (Fedora/RHEL)**: \`xtreamium-proxy-${NEW_VERSION}-1.x86_64.rpm\`
-- **Linux (Arch)**: \`xtreamium-proxy-${NEW_VERSION}-1-x86_64.pkg.tar.zst\`
+- **Windows**: \`TvnomsProxy-Setup-$NEW_VERSION.exe\` (auto-updating installer)
+- **Linux (Debian/Ubuntu)**: \`tvnoms-proxy_${NEW_VERSION}_amd64.deb\`
+- **Linux (Fedora/RHEL)**: \`tvnoms-proxy-${NEW_VERSION}-1.x86_64.rpm\`
+- **Linux (Arch)**: \`tvnoms-proxy-${NEW_VERSION}-1-x86_64.pkg.tar.zst\`
 
 See the included documentation for installation instructions."
 

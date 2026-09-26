@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace Xtreamium.Proxy.Models;
+namespace Tvnoms.Proxy.Models;
 
 public class SettingsVm {
   public required string MediaPlayerPath { get; set; }

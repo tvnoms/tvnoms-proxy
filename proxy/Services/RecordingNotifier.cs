@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.SignalR;
-using Xtreamium.Proxy.Data.Models;
-using Xtreamium.Proxy.Hubs;
-using Xtreamium.Proxy.Models;
+using Tvnoms.Proxy.Data.Models;
+using Tvnoms.Proxy.Hubs;
+using Tvnoms.Proxy.Models;
 
-namespace Xtreamium.Proxy.Services;
+namespace Tvnoms.Proxy.Services;
 
 public class RecordingNotifier : IRecordingNotifier {
   /// <summary>

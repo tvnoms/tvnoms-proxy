@@ -1,4 +1,4 @@
-﻿namespace Xtreamium.Proxy.Services;
+﻿namespace Tvnoms.Proxy.Services;
 
 /// <summary>
 /// Interface for video recording operations

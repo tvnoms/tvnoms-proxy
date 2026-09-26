@@ -1,8 +1,8 @@
-using Xtreamium.Tray.Models;
-using Xtreamium.Tray.Services;
+using Tvnoms.Tray.Models;
+using Tvnoms.Tray.Services;
 using Xunit;
 
-namespace Xtreamium.Tray.Tests;
+namespace Tvnoms.Tray.Tests;
 
 public class RecordingStateTrackerTests {
   [Fact]

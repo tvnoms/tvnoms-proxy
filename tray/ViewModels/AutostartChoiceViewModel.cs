@@ -1,9 +1,9 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
-namespace Xtreamium.Tray.ViewModels;
+namespace Tvnoms.Tray.ViewModels;
 
-/// <summary>Backs the one-time first-run picker that decides how xtreamium-proxy starts itself.
+/// <summary>Backs the one-time first-run picker that decides how tvnoms-proxy starts itself.
 /// Launched by the proxy's Velopack OnFirstRun hook as a separate, short-lived tray.exe process
 /// (see Program's --pick-autostart-mode handling) - the proxy performs the actual install, this
 /// only collects the answer by writing it to outputPath for the waiting proxy process to read.</summary>

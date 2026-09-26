@@ -1,19 +1,19 @@
 using System.Runtime.Versioning;
 using Microsoft.Win32;
-using Xtreamium.Tray.Configuration;
+using Tvnoms.Tray.Configuration;
 
-namespace Xtreamium.Tray.Services;
+namespace Tvnoms.Tray.Services;
 
 /// <summary>Self-installs a per-user autostart entry on first successful run, mirroring the
-/// precedent already set by xtreamium-proxy's own Velopack first-run hook (which self-installs
+/// precedent already set by tvnoms-proxy's own Velopack first-run hook (which self-installs
 /// the Windows Service without prompting). A marker file prevents re-writing on every launch and
 /// lets the user remove their own autostart entry without this fighting them.
 ///
 /// Linux is deliberately not handled here: the packaged tray is a systemd user unit bound to
-/// xtreamium-proxy.service, which is what makes it start and stop with the proxy. A self-installed
+/// tvnoms-proxy.service, which is what makes it start and stop with the proxy. A self-installed
 /// XDG autostart entry would start a second, unmanaged copy at login that outlives the proxy.
 ///
-/// macOS support is implemented but not yet wired into any packaging/installer — xtreamium-proxy
+/// macOS support is implemented but not yet wired into any packaging/installer — tvnoms-proxy
 /// itself has no macOS packaging pipeline today, so shipping a signed/notarized .app is a
 /// separate, later effort. This code path exists so it's ready when that happens.</summary>
 public static class AutostartInstaller {
@@ -46,7 +46,7 @@ public static class AutostartInstaller {
 
     using var key = Registry.CurrentUser.OpenSubKey(
       @"Software\Microsoft\Windows\CurrentVersion\Run", writable: true);
-    key?.SetValue("XtreamiumTray", $"\"{exePath}\"", RegistryValueKind.String);
+    key?.SetValue("TvnomsTray", $"\"{exePath}\"", RegistryValueKind.String);
   }
 
   [SupportedOSPlatform("macos")]
@@ -55,19 +55,19 @@ public static class AutostartInstaller {
     var launchAgentsDir = Path.Combine(home, "Library", "LaunchAgents");
     Directory.CreateDirectory(launchAgentsDir);
 
-    var exePath = Environment.ProcessPath ?? "/Applications/Xtreamium Tray.app/Contents/MacOS/xtreamium-tray";
+    var exePath = Environment.ProcessPath ?? "/Applications/Tvnoms Tray.app/Contents/MacOS/tvnoms-tray";
     var plist =
       $"""
        <?xml version="1.0" encoding="UTF-8"?>
        <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
        <plist version="1.0"><dict>
-         <key>Label</key><string>com.xtreamium.tray</string>
+         <key>Label</key><string>com.tvnoms.tray</string>
          <key>ProgramArguments</key><array><string>{exePath}</string></array>
          <key>RunAtLoad</key><true/>
          <key>KeepAlive</key><false/>
        </dict></plist>
        """;
 
-    File.WriteAllText(Path.Combine(launchAgentsDir, "com.xtreamium.tray.plist"), plist);
+    File.WriteAllText(Path.Combine(launchAgentsDir, "com.tvnoms.tray.plist"), plist);
   }
 }

@@ -1,4 +1,4 @@
-﻿namespace Xtreamium.Proxy.Services;
+﻿namespace Tvnoms.Proxy.Services;
 
 /// <summary>
 /// Represents the outcome of a video player operation, with an optional failure reason.

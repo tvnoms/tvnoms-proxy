@@ -1,8 +1,8 @@
 using FluentMigrator;
 using Microsoft.Extensions.Options;
-using Xtreamium.Proxy.Configuration;
+using Tvnoms.Proxy.Configuration;
 
-namespace Xtreamium.Proxy.Data.Migrations;
+namespace Tvnoms.Proxy.Data.Migrations;
 
 [Migration(20253108013939)]
 public class InitialSeed : Migration{

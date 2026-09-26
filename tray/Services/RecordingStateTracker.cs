@@ -1,6 +1,6 @@
-using Xtreamium.Tray.Models;
+using Tvnoms.Tray.Models;
 
-namespace Xtreamium.Tray.Services;
+namespace Tvnoms.Tray.Services;
 
 /// <summary>A currently-recording show, with the most recent progress tick if one has arrived
 /// yet (progress ticks land separately from the create/status event, roughly once a second).</summary>
