@@ -5,8 +5,8 @@ namespace Tvnoms.Proxy.Configuration;
 /// </summary>
 public class AppConfiguration {
   public const string SectionName = "App";
-  public const string DefaultProductionWebUiUrl = "https://streams.ferg.al";
-  public const string DefaultDevelopmentWebUiUrl = "https://streams.dev.fergl.ie:3000";
+  public const string DefaultProductionWebUiUrl = "https://tvnoms.com";
+  public const string DefaultDevelopmentWebUiUrl = "https://tvnoms.dev.fergl.ie:3000";
 
   public NetworkingConfiguration Networking { get; set; } = new();
   public VideoPlayerConfiguration VideoPlayer { get; set; } = new();

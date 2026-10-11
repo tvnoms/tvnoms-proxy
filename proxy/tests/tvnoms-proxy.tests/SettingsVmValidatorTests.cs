@@ -16,7 +16,7 @@ public class SettingsVmValidatorTests {
   public async Task ValidAbsoluteUrl_IsValid() {
     var validator = new SettingsVmValidator();
 
-    var result = await validator.ValidateAsync(Settings("https://streams.ferg.al"));
+    var result = await validator.ValidateAsync(Settings("https://tvnoms.com"));
 
     Assert.True(result.IsValid, string.Join(", ", result.Errors.Select(e => e.ErrorMessage)));
   }

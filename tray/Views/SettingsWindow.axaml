@@ -13,7 +13,7 @@
                Foreground="Gray"
                TextWrapping="Wrap"
                FontSize="12" />
-    <TextBox Text="{Binding WebUiUrl}" PlaceholderText="https://streams.ferg.al" />
+    <TextBox Text="{Binding WebUiUrl}" PlaceholderText="https://tvnoms.com" />
 
     <TextBlock Text="{Binding ErrorMessage}"
                Foreground="IndianRed"
