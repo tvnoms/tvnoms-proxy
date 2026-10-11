@@ -177,8 +177,8 @@ using (var startupScope = app.Services.CreateScope()) {
 app.UseCors("WebFrontend");
 
 app.MapHub<ProxyStatusHub>("/hubs/proxyStatus");
-app.MapGet("/", () => "Hello, asdsadsSailor!");
-app.MapGet("/ping", () => new {Ping = "pongpingpong"});
+app.MapGet("/", () => "Hello, Sailor!");
+app.MapGet("/ping", () => new {Ping = "pong"});
 
 app.RegisterBrowseEndpoints();
 app.RegisterVersionEndpoints();

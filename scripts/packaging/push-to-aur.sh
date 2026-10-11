@@ -67,17 +67,21 @@ if ! command -v makepkg &> /dev/null; then
     # Generate basic .SRCINFO
     cat > .SRCINFO << EOF
 pkgbase = tvnoms-proxy
-	pkgdesc = TV Noms Proxy Service
+	pkgdesc = TV Noms Proxy Service - runs as a per-user systemd service
 	pkgver = $VERSION
 	pkgrel = 1
 	url = https://github.com/tvnoms/tvnoms-proxy
+	install = tvnoms-proxy.install
 	arch = x86_64
 	license = MIT
 	depends = glibc
+	depends = icu
+	depends = ffmpeg
+	optdepends = mpv: default media player
 	provides = tvnoms-proxy
 	conflicts = tvnoms-proxy
-	backup = etc/tvnoms-proxy/appsettings.json
-	source = https://github.com/tvnoms/tvnoms-proxy/releases/download/v$VERSION/tvnoms-proxy-linux.tar.gz
+	options = !strip
+	source = tvnoms-proxy-$VERSION.tar.gz::https://github.com/tvnoms/tvnoms-proxy/releases/download/v$VERSION/tvnoms-proxy-linux.tar.gz
 	sha256sums = SKIP
 
 pkgname = tvnoms-proxy
@@ -91,15 +95,18 @@ print_info "Configuring git..."
 git config user.name "GitHub Actions"
 git config user.email "actions@github.com"
 
+# Stage first so brand-new (untracked) files count as changes — on the first push to a new
+# AUR package everything is untracked and a plain `git diff` would report nothing.
+git add PKGBUILD .SRCINFO tvnoms-proxy.install
+
 # Check if there are changes
-if git diff --quiet && git diff --cached --quiet; then
+if git diff --cached --quiet; then
     print_info "No changes to commit, AUR is already up to date"
     exit 0
 fi
 
 # Commit and push
 print_info "Committing changes..."
-git add PKGBUILD .SRCINFO tvnoms-proxy.install
 git commit -m "Update to version $VERSION"
 
 print_info "Pushing to AUR..."
